@@ -13,7 +13,7 @@ class Matriz extends Model
     public function __construct($dimension,$operaciones){
         $this->dimension = $dimension;
         $this->operaciones =$operaciones;
-        llenarMatriz($dimension);
+        $this->llenarMatriz($dimension);
     }
     
     public function llenarMatriz ($n){
