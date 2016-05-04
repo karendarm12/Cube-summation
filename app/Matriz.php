@@ -26,13 +26,13 @@ class Matriz extends Model
         }
     }
     
-    public function uptdate($x,$y,$z,$valor){
+    public function uptdateMatriz($x,$y,$z,$valor){
         $this->matriz[$x][$y][$z] = $valor;
     }
     
     public function queryMatriz($x1,$y1,$z1,$x2,$y2,$z2){
         $cont = 0;
-        for($x=$x1; $i<=$x2;$x++){
+        for($x=$x1; $x<=$x2;$x++){
             for($y=$y1; $y<=$y2;$y++){
                 for($z=$z1; $z<=$z2;$z++){
                    $cont+=$this->matriz[$x][$y][$z];

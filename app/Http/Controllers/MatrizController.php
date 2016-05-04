@@ -21,7 +21,7 @@ class MatrizController extends Controller
        $input= $request->request->get('querys');
        $consulta = explode("\n", $input);
        $casosPrueba = intval(trim(current($consulta)));
-       $listaQuerys = array();
+       $resultado = '';
         
        if($constraint->validarCasosPrueba($casosPrueba)){
           while ($casosPrueba >=1){
@@ -38,37 +38,38 @@ class MatrizController extends Controller
                     $query = $operacion[0];
                     
                     if($query == "UPDATE"){
-                        $cubo->update(
+                        $matriz->uptdateMatriz(
                             $this->restarIndice($operacion[1]),
                             $this->restarIndice($operacion[2]),
                             $this->restarIndice($operacion[3]),
-                            $operacion[4]);
+                            intval($operacion[4]));
                     }else{
-                       $sumaCubo = $cubo->queryMatriz(
+                       $sumaMatriz = $matriz->queryMatriz(
                             $this->restarIndice($operacion[1]),
                             $this->restarIndice($operacion[2]),
                             $this->restarIndice($operacion[3]),
-                            $operacion[4]);
-                        
-                        if($sumaCubo !== null){
-                            $queryInfo[] = $sumaCubo;
-                        }
+                            $this->restarIndice($operacion[4]),
+                            $this->restarIndice($operacion[5]),
+                            $this->restarIndice($operacion[6]));
+                        $resultado .=$sumaMatriz."\n";
                     }    
                 }
+                
+                return view("respuesta",['resultado'=>$resultado]);
                  
             }else{
                 return view("respuesta",['error'=>"Los datos ingresados no son validos"]);
             }
-              
+            $casosPrueba--;  
           } 
            
        }else{
-           return view("home",['error'=>"Los datos ingresados no son correctos"])
+           return view("home",['error'=>"Los datos ingresados no son correctos"]);
        }
         
     }
     
     public function restarIndice($index){
-        return intval($index-1);
+        return intval($index)-1;
     }
 }
