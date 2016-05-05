@@ -30,7 +30,7 @@ class MatrizController extends Controller
               
             if ($constraint->validarData($cuboInfo[0],$cuboInfo[1])){  
                 
-                $matriz = new Matriz ($cuboInfo[0],$cuboInfo[1]);
+                $matriz = new Matriz($cuboInfo[0],$cuboInfo[1]);
                 
                 for($i=0;$i< $matriz->getOperaciones(); $i++){
                     
@@ -55,16 +55,16 @@ class MatrizController extends Controller
                     }    
                 }
                 
-                return view("respuesta",['resultado'=>$resultado]);
+                
                  
             }else{
-                return view("respuesta",['error'=>"Los datos ingresados no son validos"]);
+                return view("resultado",['error'=>"Los datos ingresados no son validos"]);
             }
             $casosPrueba--;  
           } 
-           
+           return view("home",['resultado'=>$resultado,'casosPrueba'=>$casosPrueba]);
        }else{
-           return view("home",['error'=>"Los datos ingresados no son correctos"]);
+           return view("home",['resultado'=>"Los datos ingresados no son correctos"]);
        }
         
     }
