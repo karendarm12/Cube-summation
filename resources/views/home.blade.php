@@ -4,9 +4,9 @@
 
 
 <div class="container"> 
-<div class="page-header">
-    <h1>Cube-Summation <small>Prueba Backend para Grability</small></h1>
-</div>
+    <div class="page-header">
+        <h1>Cube-Summation <small>Prueba Backend para Grability</small></h1>
+    </div>
     <form action="{{ url('proceso') }}" method="POST" class="form-horizontal">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="row-fluid">
@@ -27,9 +27,14 @@
             
             <div class="jumbotron">
               <h3>Consultas ejecutadas:</h3>
-              <p>
+              <p class="text-success">
                   @if(isset($resultado))
                      {{ $resultado }}
+                    @endif                
+              </p>
+              <p class="text-danger">
+                  @if(isset($error))
+                     {{ $error }}
                     @endif                
               </p>
               
