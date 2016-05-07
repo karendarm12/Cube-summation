@@ -8,13 +8,28 @@ use App\Http\Requests;
 use App\Matriz;
 use App\Constraint;
 
+/**
+ * @author Karen Ramirez <karendarm12@gmail.com>
+ * Controlador encargado de recbir y procesesar los datos ingresados por el usuario
+ * a través de los métodos de la clase matriz
+ */
+
 class MatrizController extends Controller
 {
+    /**
+     * Método encargado de mostrar la vista home.
+     * @return home, Vista home 
+     */
     public function index()
     {        
         return view('home');
     }
     
+    /**
+     * Método encargado de recibir y procesar los datos ingresados
+     * @param $request, petición enviada desde la vista a través de la cual se obtienen los datos ingresados.
+     * @return Response, El resultado que se obtiene según la query ingresada. 
+     */
     public function procesarQuery(Request $request)
     {
        $constraint = new Constraint();
@@ -69,6 +84,10 @@ class MatrizController extends Controller
         
     }
     
+    /**
+     * Metodo encargado de restar una unidad al indice de un arreglo.
+     * @param $index, index actual del arreglo.
+     */
     public function restarIndice($index){
         return intval($index)-1;
     }
